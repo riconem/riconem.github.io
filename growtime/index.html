@@ -1,0 +1,85 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>growtime</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style type="text/css">
+        html, body { margin:0; padding:0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 200; }
+        canvas     { display: block; background-color: black; }
+        ul         { display: block; position: absolute; top: 0; left:0; margin:0; padding:1em; }
+        li         { display: inline-block; margin-right: 0.2em; }
+        a          { display: inline-block; background-color: rgba(255,255,255,0.15); text-decoration: none; padding: 0.3em 0.5em; border-radius: 0.2em; color:white; transition: all 300ms; }
+        a:hover    { background-color: rgba(255,255,255,0.35); }
+       .loader     { display: block; position: absolute; top: 0; left:0; width:0; height:3px; background-color: rgba(255,255,255,0.8); transition: background-color 1.5s; }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <div class="loader"></div>
+    <ul>
+        <li><a id="prev" href="#">Prev</a></li>
+        <li><a id="next" href="#">Next</a></li>
+    </ul>
+    <div class="title-wrapper">
+        <h1 id="title"></h1>
+    </div>
+</body>
+<script src="./dist/images.js"></script>
+<script type="module">
+    import Sequencer from './dist/sequencer.js';
+    (function(){
+        const sequences = [
+            {
+                list      : growbox,
+                direction : 'x',
+                scaleMode : 'cover'
+            }
+        ];
+
+        let id = parseInt(window.location.hash.substr(1));
+        if (isNaN(id) || id < 0 || id > sequences.length) id = 0;
+
+        console.log("Sequence " + id + ": " + sequences[id].from + " - " + sequences[id].to);
+
+        const loader = document.querySelector('.loader');
+
+        const options = {
+            canvas           : document.querySelector('canvas'),
+            showLoadedImages : true,
+            playMode         : 'hover',
+            imageLoad : function(e){
+                loader.style.width = e.count / e.total * 100 + 'vw';
+            },
+            queueComplete : function(e){
+                loader.style.width = '100vw';
+                loader.style.backgroundColor = 'rgba(255,255,255,0)';
+            }
+        };
+
+        Object.assign(options, sequences[id]);
+        const s = Sequencer.make(options);
+
+        s.size(window.innerWidth, window.innerHeight);
+        window.addEventListener('resize', function(){
+            s.size(window.innerWidth, window.innerHeight);
+        });
+
+        document.querySelector('#next').addEventListener('click', function(e){
+            e.preventDefault();
+            const next = (id + 1) % sequences.length;
+            window.location.href = window.location.pathname + '#' + next;
+            window.location.reload();
+        });
+
+        document.querySelector('#prev').addEventListener('click', function(e){
+            e.preventDefault();
+            const next = (id - 1 + sequences.length) % sequences.length;
+            window.location.href = window.location.pathname + '#' + next;
+            window.location.reload();
+        });
+    })();
+
+</script>
+</html>
