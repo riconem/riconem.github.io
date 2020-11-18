@@ -24,3 +24,6 @@ JSONfromFileNames(pic_dir)
 
 # add JSON data to js dist/images.js
 add_JSON_to_js(picID)
+
+# make git changes
+git_change()
