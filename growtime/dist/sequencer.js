@@ -266,8 +266,7 @@ class S{
         this.ctx.textAlign = "center";
         var fileNames = this.list[id].split("/").pop();
         var date = fileNames.split("_")[0];
-        var time = fileNames.split("_")[1].split(".")[0];
-        this.ctx.fillText(date + " " + time, window.innerWidth/2, window.innerHeight - 20);
+        this.ctx.fillText(date, window.innerWidth/2, 20);
         // Enrico
 
         this.ctx.restore();
