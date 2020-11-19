@@ -6,7 +6,7 @@ import os, glob, json
 from crop import *
 
 def captureImages(outputfile):
-    raspistill("--shutter", 125,"--output", outputfile)
+    raspistill("--shutter", 800,"--output", outputfile)
     sleep(3)
 
 def createFolder(folder):
