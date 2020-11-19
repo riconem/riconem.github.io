@@ -2,6 +2,9 @@ from datetime import datetime
 from makeimage import *
 from crop import *
 
+# get current master
+git_pull()
+
 picID = 'hydrobox'
 shot_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 resize=1

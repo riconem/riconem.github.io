@@ -261,14 +261,15 @@ class S{
         this.ctx.drawImage(img, 0, 0, img.width, img.height, ~~(ox), ~~(oy), ~~iw, ~~ih);
         
         // Enrico
-        // this.ctx.font = "20px Calibri";
-        // this.ctx.fillStyle = "black";
-        // this.ctx.textAlign = "center";
-        // var fileNames = this.list[id].split("/").pop();
-        // var date = fileNames.split("_")[0];
-        // var time = fileNames.split("_")[1].split(".")[0];
-        // this.ctx.fillText(date + " " + time, window.innerWidth/2, window.innerHeight - 20);
+        this.ctx.font = "20px Calibri";
+        this.ctx.fillStyle = "white";
+        this.ctx.textAlign = "center";
+        var fileNames = this.list[id].split("/").pop();
+        var date = fileNames.split("_")[0];
+        var time = fileNames.split("_")[1].split(".")[0];
+        this.ctx.fillText(date + " " + time, window.innerWidth/2, window.innerHeight - 20);
         // Enrico
+
         this.ctx.restore();
     }
 

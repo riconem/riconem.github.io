@@ -1,5 +1,5 @@
 from time import sleep
-from sh import raspistill
+from sh import raspistill, git
 from subprocess import check_call, call
 from PIL import Image
 import os, glob, json
@@ -54,6 +54,9 @@ def removeImagesExcept(folder, hour='13', file_type = 'jpg'):
 
 def add_JSON_to_js(picID):
     check_call(['./json_to_js.sh', picID])
+
+def git_pull():
+    git("pull", "origin", "master")
 
 def git_change():
     call('./git_changes.sh')
