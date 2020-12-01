@@ -27,6 +27,7 @@ def reduceAll(folder, file_type = 'jpg'):
 
 def reduce_and_crop_all(folder, file_type = 'jpg', width=1920, height=1080):
     mod_folder = os.path.join(folder, 'reduced')
+    createFolder(mod_folder)
     size = width, height
     glob_folder = os.path.join(folder, "*." + file_type)
     for image_path in glob.glob(glob_folder):

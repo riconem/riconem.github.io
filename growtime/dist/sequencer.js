@@ -132,6 +132,7 @@ class S{
             showLoadedImages : false,        // don't display images while loading
             dragAmount       : 10,
             hiDPI            : true,
+            showDayByName    : false,
         };
 
         this.config = {...defaults, ...opts};
@@ -261,12 +262,14 @@ class S{
         this.ctx.drawImage(img, 0, 0, img.width, img.height, ~~(ox), ~~(oy), ~~iw, ~~ih);
         
         // Enrico
-        this.ctx.font = "20px Calibri";
-        this.ctx.fillStyle = "white";
-        this.ctx.textAlign = "center";
-        var fileNames = this.list[id].split("/").pop();
-        var date = fileNames.split("_")[0];
-        this.ctx.fillText(date, window.innerWidth/2, 30);
+        if (this.config.showDayByName == true){
+            this.ctx.font = "20px Calibri";
+            this.ctx.fillStyle = "white";
+            this.ctx.textAlign = "center";
+            var fileNames = this.list[id].split("/").pop();
+            var date = fileNames.split("_")[0];
+            this.ctx.fillText(date, window.innerWidth/2, 30);
+        }
         // Enrico
 
         this.ctx.restore();
