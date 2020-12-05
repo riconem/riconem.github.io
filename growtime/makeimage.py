@@ -3,7 +3,7 @@ from sh import raspistill, git
 from subprocess import check_call, call
 from PIL import Image
 import os, glob, json
-from crop import *
+from crop import resize_and_crop
 
 def captureImages(outputfile):
     raspistill("--output", outputfile)
