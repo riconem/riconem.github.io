@@ -1,5 +1,4 @@
 #!/bin/bash
 
 cd "$( dirname "$BASH_SOURCE" )"
-python3 hydrobox.py
-
+python3 make_image.py
