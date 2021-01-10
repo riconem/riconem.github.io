@@ -1,3 +1,6 @@
+from sh import git
+from subprocess import call
+
 def git_pull():
     git("pull", "origin", "master")
 
