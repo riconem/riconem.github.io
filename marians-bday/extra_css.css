@@ -1,0 +1,16 @@
+#grey {
+    background: grey;
+    display: inline-block;
+    color: crimson
+}
+
+#req{
+    color: crimson;
+    background-color: yellow;
+}
+
+
+.hide{ 
+    display: inline;
+    visibility: hidden;
+}
