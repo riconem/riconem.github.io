@@ -2,17 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://riconem.github.io/marians-bday/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://riconem.github.io/marians-bday/content/happy-birthday/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://riconem.github.io/marians-bday/content/hint/</loc>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://riconem.github.io/marians-bday/content/riddle/</loc>
-         <lastmod>2023-10-26</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

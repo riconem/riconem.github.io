@@ -1,0 +1,145 @@
+<!-- matrix.html -->
+
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en"> -->
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <style>
+        /* Add some basic styling to the cells */
+        #matrix-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            margin: 0 auto;
+            gap: 5px; /* Adjust the gap between cells */
+            max-width: 600px; /* Optional: set a maximum width for the grid */
+            width: 100%; /* Ensure the grid takes full width */
+        }
+        #count-container {
+            text-align: center;
+            padding-top: 10px;
+            font-size: 18px;
+        }
+        .cell {
+            aspect-ratio: 1/ 1;
+            border-radius: 3px;
+            background-color: #f1f1f1;
+            box-sizing: border-box;
+        }
+    </style>
+    <!-- <title>Hover Matrix</title> -->
+</head>
+<body>
+    <!-- <div id="matrix-wrapper"> -->
+    <div class="matrix-container" id="matrix-container"></div>
+    <div id="count-container">
+        <p class=".md-typeset" id="count-text"></p>
+    </div>
+    <script>
+        function createTwoDArray(rows, cols) {
+        const twoDArray = [];
+        for (let i = 0; i < rows; i++) {
+            twoDArray.push(Array(cols).fill(0));
+        }
+        return twoDArray;
+        }
+        // Function to generate the matrix
+        function generateMatrix(rows, cols) {
+            const matrixContainer = document.getElementById('matrix-container');
+            const countText = document.getElementById('count-text');
+    
+            // Iniital cellColorList
+            const cellColors = createTwoDArray(rows, cols);
+    
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+    
+                    // Variable to track whether the cell is clicked
+                    let isClicked = false;
+    
+                    cell.addEventListener('mouseover', function () {
+                        // Change the color on hover if not clicked
+                        if (!isClicked) {
+                            this.style.backgroundColor = '#b4eee6';
+                        }
+                    });
+    
+                    cell.addEventListener('mouseout', function () {
+                        // Reset the color on mouse out if not clicked
+                        if (!isClicked) {
+                            this.style.backgroundColor = '';
+                        }
+                    });
+                    cell.addEventListener('click', function () {
+                        // Change the color to black on click and update the isClicked flag
+                        if (!isClicked) {
+                            this.style.backgroundColor = '#00bda4';
+                            cellColors[i][j] = 1;
+                            // cellColors.push('black');
+                        } else {
+                            this.style.backgroundColor = '';
+                            cellColors[i][j] = 0;
+                            // const removedColor = cellColors.pop();
+                        }
+
+                        isClicked = !isClicked;
+    
+                        // Update the Text
+                        updateText();
+                    });
+    
+                    matrixContainer.appendChild(cell);
+                }
+                // Add a line break after each row
+                // matrixContainer.appendChild(document.createElement('br'));
+            }
+    
+            // Function to update the count display
+            function updateText() {
+                const text = countCellColors();
+                countText.innerHTML = text;
+            }
+    
+            // Function to get the count string
+            function countCellColors() {
+                const cellColorsFlat = cellColors.flat()
+                compressionList = [];
+                currentColor = cellColorsFlat[0];
+                count = 0;
+                for (let i = 0; i < cellColorsFlat.length; i++) {
+                    if (currentColor == cellColorsFlat[i]){
+                        count = count + 1;
+                    }
+                    else {
+                        compressionList.push(`${count}x${currentColor}`);
+                        count = 1;
+                        currentColor = cellColorsFlat[i];
+                    }
+                    if (i==cellColorsFlat.length-1){
+                        compressionList.push(`${count}x${currentColor}`);
+                    }
+                }
+                return compressionList.join(' ');
+            }
+    
+            updateText();
+        }
+    
+        // Call the function to generate a 10x10 matrix
+        generateMatrix(10, 10);
+    </script>
+</div>
+</body>
+</html>
